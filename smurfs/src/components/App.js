@@ -73,7 +73,7 @@ class App extends Component {
         </form>
         {this.props.smurfs.map((smurfs) => {
           return (
-            <div key={Date.now()}>
+            <div key={Math.random()}>
               <h1>{smurfs.name}</h1>
               <p>{smurfs.height}</p>
               <p>{smurfs.age}</p>
