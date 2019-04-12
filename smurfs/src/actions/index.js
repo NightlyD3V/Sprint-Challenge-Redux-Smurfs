@@ -7,10 +7,9 @@ import axios from 'axios';
 
 export const GET_DATA = 'FETCHING_DATA';
 export const GOT_DATA = 'GOT_DATA'
-export const DATA_SUCCESS = 'DATA_SUCCESS';
 export const CREATE_NEW_SMURF = 'CREATE_NEW_SMURF';
-export const DELETE_SMURF = 'DELETE_SMURF';
 export const UPDATE_SMURF = 'UPDATE_SMURF';
+export const DELETE_SMURF = 'DELETE_SMURF';
 
 /*
   For this project you'll need at least 2 action creators for the main portion,
@@ -25,39 +24,40 @@ export const UPDATE_SMURF = 'UPDATE_SMURF';
 
 export const getSmurf = () => dispatch =>{
   dispatch({ type: GET_DATA })
-  return axios.get('http://localhost:3333/')
+  axios.get('http://localhost:3333/smurfs')
     .then((res) => {
-      dispatch({ GOT_DATA, payload: res.data });
+      dispatch({ type: GOT_DATA, payload: res.data });
     })
     .catch((err) => {
       console.log(err);
     })
 }
 
-export const createSmurf = () => {
+export const createSmurf = () => dispatch => {
   axios.post('http://localhost:3333/')
     .then((res) => {
-      console.log(res);
+      dispatchEvent({ type: CREATE_NEW_SMURF, payload: res.data });
     })
    .catch((err) => {
       console.log(err);
     })
 }
 
-export const updateSmurf = () => {
+export const updateSmurf = () => dispatch => {
   axios.put('http://localhost:3333/')
   .then((res) => {
-    console.log(res);
+    dispatchEvent({ type: UPDATE_SMURF, payload: res.data });
   })
   .catch((err) => {
     console.log(err);
   })
 }
 
-export const deleteSmurf = () => {
+export const deleteSmurf = () => dispatch => {
   axios.delete('http://localhost:3333/')
     .then((res) => {
       console.log(res);
+      dispatch({ type: DELETE_SMURF, payload: res.data });
     })
     .catch((err) => {
       console.log(err);

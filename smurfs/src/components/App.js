@@ -12,6 +12,7 @@ import { getSmurf } from '../actions';
  */
 class App extends Component {
   state={
+    smurfs: [],
     addSmurf: '', 
   }
 
@@ -27,6 +28,7 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.props)
     return (
       <div className="App">
         <h1>SMURFS! 2.0 W/ Redux</h1>
@@ -43,6 +45,11 @@ class App extends Component {
           </input>
         </form>
         <button>GET THE SMURFS</button>
+        {/* {this.props.state.map((smurfs) => {
+          return (
+            <h1>{smurfs.name}</h1>
+          )
+        })} */}
       </div>
     );
   }
@@ -50,7 +57,8 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    ...state
+    ...state,
+    smurfs: state.smurfs
   }
 }
 

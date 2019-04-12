@@ -53,6 +53,20 @@ export const rootReducer = (state=initialState, action) => {
         addingSmurf: true
       }
     }
+    case UPDATE_SMURF:{
+      return {
+        ...state,
+        smurfs: action.payload,
+        updatingSmurf: true,
+      }
+    }
+    case DELETE_SMURF:{
+      return { 
+        ...state,
+        smurfs: action.payload,
+        deleteSmurf: true,
+      }
+    }
   }
 }
 
