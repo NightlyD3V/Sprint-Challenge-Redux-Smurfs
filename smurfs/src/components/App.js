@@ -11,9 +11,19 @@ import { getSmurf } from '../actions';
  `How do I ensure that my component links the state to props?`
  */
 class App extends Component {
+  state={
+    addSmurf: '', 
+  }
 
   componentDidMount() {
     this.props.getSmurf();
+  }
+
+  changeHandler = (event) => {
+    event.preventDefault();
+    this.setState({
+      [event.target.name] : event.target.value
+    })
   }
 
   render() {
@@ -23,16 +33,24 @@ class App extends Component {
         <div>Welcome to your Redux version of Smurfs!</div>
         <div>Start inside of your `src/index.js` file!</div>
         <div>Have fun!</div>
+        <form>
+          <input
+            onChange={this.changeHandler}
+            placeholder="Add a smurf"
+            value={this.state.addSmurf}
+            name="addSmurf"
+          >
+          </input>
+        </form>
         <button>GET THE SMURFS</button>
       </div>
     );
   }
 }
 
-const mapStateToProps = state => {
-  console.log(state);
+const mapStateToProps = (state) => {
   return {
-    smurfs: state.smurfs
+    ...state
   }
 }
 

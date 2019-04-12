@@ -6,6 +6,8 @@ import axios from 'axios';
 */
 
 export const GET_DATA = 'FETCHING_DATA';
+export const GOT_DATA = 'GOT_DATA'
+export const DATA_SUCCESS = 'DATA_SUCCESS';
 export const CREATE_NEW_SMURF = 'CREATE_NEW_SMURF';
 export const DELETE_SMURF = 'DELETE_SMURF';
 export const UPDATE_SMURF = 'UPDATE_SMURF';
@@ -21,10 +23,11 @@ export const UPDATE_SMURF = 'UPDATE_SMURF';
    D - deleteSmurf
 */
 
-export const getSmurf = () => {
-  axios.get('http://localhost:3333/')
+export const getSmurf = () => dispatch =>{
+  dispatch({ type: GET_DATA })
+  return axios.get('http://localhost:3333/')
     .then((res) => {
-      console.log(res);
+      dispatch({ GOT_DATA, payload: res.data });
     })
     .catch((err) => {
       console.log(err);

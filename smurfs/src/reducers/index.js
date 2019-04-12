@@ -1,23 +1,10 @@
 /*
   Be sure to import in all of the action types from `../actions`
 */
-
-
-/*
- Your initial/default state for this project could *Although does not have to* look a lot like this
- {
-   smurfs: [],
-   fetchingSmurfs: false
-   addingSmurf: false
-   updatingSmurf: false
-   deletingSmurf: false
-   error: null
- }
-*/
-
 //actions
 import {
   GET_DATA,
+  GOT_DATA,
   CREATE_NEW_SMURF,
   DELETE_SMURF,
   UPDATE_SMURF
@@ -40,8 +27,32 @@ const initialState =  {
   Components can then read your store as, `state` and not `state.fooReducer`.
 */
 
-const rootReducer = (state=initialState, actions) => {
+
+export const rootReducer = (state=initialState, action) => {
   //switch
+  switch(action.type) {
+    case GET_DATA: {
+      return {
+        ...state,
+        fetchingSmurfs: true,
+        error: 'Error getting Data'
+      }
+    }
+    case GOT_DATA: {
+      return {
+        ...state,
+        smurfs: action.payload,
+        fetchingSmurfs: false, 
+        error: 'Error returning data'
+      }
+    }
+    case CREATE_NEW_SMURF:{
+      return {
+        ...state, 
+        smurfs: action.payload,
+        addingSmurf: true
+      }
+    }
+  }
 }
 
-export default rootReducer;
