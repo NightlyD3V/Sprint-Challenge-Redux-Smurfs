@@ -2,6 +2,7 @@
   Be sure to import in all of the action types from `../actions`
 */
 
+
 /*
  Your initial/default state for this project could *Although does not have to* look a lot like this
  {
@@ -13,6 +14,14 @@
    error: null
  }
 */
+
+//actions
+import {
+  GET_DATA,
+  CREATE_NEW_SMURF,
+  DELETE_SMURF,
+  UPDATE_SMURF
+} from '../actions';
 
 const initialState =  {
   smurfs: [],
@@ -31,8 +40,8 @@ const initialState =  {
   Components can then read your store as, `state` and not `state.fooReducer`.
 */
 
-const rootReducer = () => {
-
+const rootReducer = (state=initialState, actions) => {
+  //switch
 }
 
 export default rootReducer;

@@ -21,17 +21,17 @@ export const UPDATE_SMURF = 'UPDATE_SMURF';
    D - deleteSmurf
 */
 
-const getTheSmurfs = () => {
+export const getSmurf = () => {
   axios.get('http://localhost:3333/')
     .then((res) => {
       console.log(res);
     })
     .catch((err) => {
-
+      console.log(err);
     })
 }
 
-const createSmurf = () => {
+export const createSmurf = () => {
   axios.post('http://localhost:3333/')
     .then((res) => {
       console.log(res);
@@ -41,7 +41,7 @@ const createSmurf = () => {
     })
 }
 
-const updateSmurf = () => {
+export const updateSmurf = () => {
   axios.put('http://localhost:3333/')
   .then((res) => {
     console.log(res);
@@ -51,8 +51,8 @@ const updateSmurf = () => {
   })
 }
 
-const deleteSmurf = () => {
-  axios.deletep('http://localhost:3333/')
+export const deleteSmurf = () => {
+  axios.delete('http://localhost:3333/')
     .then((res) => {
       console.log(res);
     })
